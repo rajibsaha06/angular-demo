@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "projects": {
+    "angular-demo": {
+      "projectType": "application",
+      "root": "apps/angular-demo",
+      "sourceRoot": "apps/angular-demo/src",
+      "prefix": "demo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/angular-demo",
+            "index": "apps/angular-demo/src/index.html",
+            "main": "apps/angular-demo/src/main.ts",
+            "polyfills": "apps/angular-demo/src/polyfills.ts",
+            "tsConfig": "apps/angular-demo/tsconfig.app.json",
+            "assets": [
+              "apps/angular-demo/src/favicon.ico",
+              "apps/angular-demo/src/assets"
+            ],
+            "styles": ["apps/angular-demo/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/angular-demo/src/environments/environment.ts",
+                  "with": "apps/angular-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "angular-demo:build:production"
+            },
+            "development": {
+              "browserTarget": "angular-demo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "angular-demo:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/angular-demo/src/**/*.ts",
+              "apps/angular-demo/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/angular-demo"],
+          "options": {
+            "jestConfig": "apps/angular-demo/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "angular-demo-e2e": {
+      "root": "apps/angular-demo-e2e",
+      "sourceRoot": "apps/angular-demo-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/angular-demo-e2e/cypress.json",
+            "devServerTarget": "angular-demo:serve:development",
+            "tsConfig": "apps/angular-demo-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-demo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/angular-demo-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["angular-demo"]
+    }
+  }
+}
