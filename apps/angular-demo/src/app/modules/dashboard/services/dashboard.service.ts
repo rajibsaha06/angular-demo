@@ -28,4 +28,22 @@ export class DashboardService {
         })
       );
   }
+
+  /**
+   * Set Student
+   * @param formData Students
+   * @returns Observable<Students>.
+   */
+  setStudent(formData: Students): Observable<Students> {
+    return this._http
+      .post<Students>(
+        `${environment.apiBaseUrl}${environment.apiPath}${Actions.SET_STUDENT}.json`,
+        formData
+      )
+      .pipe(
+        map((res: any) => {
+          return res?.data;
+        })
+      );
+  }
 }

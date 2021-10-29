@@ -6,6 +6,11 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [GridComponent, CrudComponent, DashboardComponent],
@@ -13,6 +18,11 @@ import { InputTextModule } from 'primeng/inputtext';
     CommonModule,
     TableModule,
     InputTextModule,
+    DialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    ToastModule,
     RouterModule.forChild([
       {
         path: '',
@@ -21,5 +31,7 @@ import { InputTextModule } from 'primeng/inputtext';
       },
     ]),
   ],
+  providers: [MessageService],
+  entryComponents: [CrudComponent],
 })
 export class DashboardModule {}

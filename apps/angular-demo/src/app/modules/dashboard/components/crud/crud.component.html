@@ -1,1 +1,75 @@
-<p>crud works!</p>
+<div [formGroup]="studentForm">
+  <div class="col-lg-12 row">
+    <div class="col-lg-4 pt-4">
+      <label>Name <span class="required">*</span></label>
+      <input
+        formControlName="name"
+        type="text"
+        pInputText
+        class="form-control textbox"
+      />
+    </div>
+    <div class="col-lg-4 pt-4">
+      <label>Class <span class="required">*</span></label>
+      <input
+        formControlName="class"
+        type="text"
+        pInputText
+        class="form-control textbox"
+      />
+    </div>
+    <div class="col-lg-4 pt-4">
+      <label>Age <span class="required">*</span></label>
+      <input
+        formControlName="age"
+        type="number"
+        pInputText
+        class="form-control textbox"
+      />
+    </div>
+    <div class="col-lg-4 pt-4">
+      <label>Address <span class="required">*</span></label>
+      <input
+        formControlName="address"
+        type="text"
+        pInputText
+        class="form-control textbox"
+      />
+    </div>
+    <div class="col-lg-4 pt-4">
+      <label>Phone <span class="required">*</span></label>
+      <input
+        formControlName="phone"
+        type="text"
+        pInputText
+        class="form-control textbox"
+      />
+    </div>
+    <div class="col-lg-4 pt-4">
+      <label>City <span class="required">*</span></label>
+      <input
+        formControlName="city"
+        type="text"
+        pInputText
+        class="form-control textbox"
+      />
+    </div>
+    <div class="col-lg-4 pt-4">
+      <label>Country <span class="required">*</span></label>
+      <input
+        formControlName="country"
+        type="text"
+        pInputText
+        class="form-control textbox"
+      />
+    </div>
+    <div class="col-lg-12 pt-4">
+      <button
+        pButton
+        type="submit"
+        label="Submit"
+        (click)="onSubmit()"
+      ></button>
+    </div>
+  </div>
+</div>

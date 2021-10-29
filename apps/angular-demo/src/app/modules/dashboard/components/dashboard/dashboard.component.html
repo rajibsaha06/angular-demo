@@ -2,5 +2,11 @@
   <div class="rowhead col-lg-12 pt-2">
     <h3>Students</h3>
   </div>
-  <demo-grid [data]="students$ | async" [loader]="loader"></demo-grid>
+  <demo-grid
+    [data]="students$ | async"
+    [loader]="loader"
+    (viewRow)="openDialog($event)"
+  ></demo-grid>
 </div>
+
+<p-toast></p-toast>

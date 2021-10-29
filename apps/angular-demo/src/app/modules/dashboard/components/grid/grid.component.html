@@ -82,7 +82,9 @@
           <td>
             {{ item?.country }}
           </td>
-          <td>Actions</td>
+          <td>
+            <a href="javascript:void(0)" (click)="view(item)">Edit</a>
+          </td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">

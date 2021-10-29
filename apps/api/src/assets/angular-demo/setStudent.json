@@ -1,0 +1,12 @@
+{
+  "data": {
+    "id": "S-0001",
+    "name": "A",
+    "class": "XII",
+    "age": 16,
+    "address": "Dummy",
+    "country": "England",
+    "city": "London",
+    "phone": "4356546456"
+  }
+}

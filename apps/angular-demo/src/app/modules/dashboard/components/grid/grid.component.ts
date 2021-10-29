@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { Table } from 'primeng/table';
 import { Students } from '../../models/dashboard.interface';
 
@@ -13,10 +20,20 @@ export class GridComponent implements OnInit {
   rows = 6;
   rowsPerPageOptions = [6, 12, 24, 48];
   @ViewChild('studentTable') studentTable: Table | undefined;
+  @Output() viewRow: EventEmitter<Students> = new EventEmitter<Students>();
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  /**
+   * View Row
+   * @param item Students
+   * @returns void
+   */
+  view(item: Students): void {
+    this.viewRow.emit(item);
+  }
 
   /**
    * Table Filter
