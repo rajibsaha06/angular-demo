@@ -1,6 +1,13 @@
 <div class="col-lg-12">
   <div class="rowhead col-lg-12 pt-2">
-    <h3>Weather</h3>
+    <h3>
+      Weather
+      <ng-container *ngIf="data?.current?.weather_icons.length">
+        <ng-container *ngFor="let item of data?.current?.weather_icons">
+          <img [src]="item" alt="" />
+        </ng-container>
+      </ng-container>
+    </h3>
   </div>
   <div class="col-lg-12 row">
     <div class="col-lg-4 pr-0 text-right">
@@ -15,56 +22,48 @@
     <div class="col-lg-2 pr-0 text-right">
       <button pButton type="button" label="Search" (click)="getData()"></button>
     </div>
+    <div class="col-lg-6">
+      <p class="text-center">
+        <strong> Current weather conditions:</strong>
+        {{ data?.current?.weather_descriptions?.toString() || 'NA' }}
+      </p>
+      <p class="text-center">
+        <strong> Temperature in Degrees Celsius:</strong>
+        {{ data?.current?.temperature || 'NA' }}
+      </p>
+      <p class="text-center">
+        <strong> Feels like in Degrees Celsius:</strong>
+        {{ data?.current?.feelslike || 'NA' }}
+      </p>
+      <p class="text-center">
+        <strong> Humidity:</strong>
+        {{ data?.current?.humidity || 'NA' }}
+      </p>
+      <p class="text-center">
+        <strong> Visibility:</strong>
+        {{ data?.current?.visibility || 'NA' }}
+      </p>
+      <p class="text-center">
+        <strong> Wind Speed (kilometers/hour):</strong>
+        {{ data?.current?.wind_speed || 'NA' }}
+      </p>
+      <p class="text-center">
+        <strong> Wind direction:</strong>
+        {{ data?.current?.wind_dir || 'NA' }}
+      </p>
+      <p class="text-center">
+        <strong> Wind direction:</strong>
+        {{ data?.current?.wind_dir || 'NA' }}
+      </p>
+      <p class="text-center">
+        <strong>Cloudcover (%):</strong>
+        {{ data?.current?.cloudcover || 'NA' }}
+      </p>
+      <p class="text-center">
+        <strong>Report Time:</strong>
+        {{ data?.current?.observation_time || 'NA' }}
+      </p>
+    </div>
   </div>
-</div>
-<div class="col-lg-12">
-  <h3 class="text-center my-4">
-    Weather Details:
-    <ng-container *ngIf="data?.current?.weather_icons.length">
-      <ng-container *ngFor="let item of data?.current?.weather_icons">
-        <img [src]="item" alt="" />
-      </ng-container>
-    </ng-container>
-  </h3>
-  <p class="text-center">
-    <strong> Current weather conditions:</strong>
-    {{ data?.current?.weather_descriptions?.toString() || 'NA' }}
-  </p>
-  <p class="text-center">
-    <strong> Temperature in Degrees Celsius:</strong>
-    {{ data?.current?.temperature || 'NA' }}
-  </p>
-  <p class="text-center">
-    <strong> Feels like in Degrees Celsius:</strong>
-    {{ data?.current?.feelslike || 'NA' }}
-  </p>
-  <p class="text-center">
-    <strong> Humidity:</strong>
-    {{ data?.current?.humidity || 'NA' }}
-  </p>
-  <p class="text-center">
-    <strong> Visibility:</strong>
-    {{ data?.current?.visibility || 'NA' }}
-  </p>
-  <p class="text-center">
-    <strong> Wind Speed (kilometers/hour):</strong>
-    {{ data?.current?.wind_speed || 'NA' }}
-  </p>
-  <p class="text-center">
-    <strong> Wind direction:</strong>
-    {{ data?.current?.wind_dir || 'NA' }}
-  </p>
-  <p class="text-center">
-    <strong> Wind direction:</strong>
-    {{ data?.current?.wind_dir || 'NA' }}
-  </p>
-  <p class="text-center">
-    <strong>Cloudcover (%):</strong>
-    {{ data?.current?.cloudcover || 'NA' }}
-  </p>
-  <p class="text-center">
-    <strong>Report Time:</strong>
-    {{ data?.current?.observation_time || 'NA' }}
-  </p>
 </div>
 <p-toast></p-toast>
