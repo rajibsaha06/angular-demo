@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Students } from '../../models/dashboard.interface';
 import { DashboardService } from '../../services/dashboard.service';
 import { MessageService } from 'primeng/api';
+import { SharedService } from '../../../shared/services/shared.service';
 
 @Component({
   selector: 'demo-crud',
@@ -21,7 +22,8 @@ export class CrudComponent implements OnInit {
     private dynamicDialogConfig: DynamicDialogConfig,
     private fb: FormBuilder,
     private dashboardService: DashboardService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private sharedService: SharedService
   ) {
     this.data = this.dynamicDialogConfig?.data;
   }

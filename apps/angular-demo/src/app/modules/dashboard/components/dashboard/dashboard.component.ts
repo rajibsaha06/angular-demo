@@ -5,6 +5,8 @@ import { Students } from '../../models/dashboard.interface';
 import { DashboardService } from '../../services/dashboard.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CrudComponent } from '../crud/crud.component';
+import { SharedService } from '../../../shared/services/shared.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'demo-dashboard',
@@ -14,12 +16,15 @@ import { CrudComponent } from '../crud/crud.component';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   students$: Observable<Students[]> | undefined;
+  students: Students[] = [];
   loader: boolean = false;
   private subscription: Subscription = new Subscription();
 
   constructor(
     private dashboardService: DashboardService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private sharedService: SharedService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -31,11 +36,37 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * @param none
    * @returns Students[].
    */
+  // private getStudents(): void {
+  //   this.loader = true;
+  //   this.students$ = this.dashboardService.getStudents().pipe(
+  //     finalize(() => (this.loader = false)),
+  //     catchError((err: any) => of([]))
+  //   );
+  // }
+
   private getStudents(): void {
     this.loader = true;
-    this.students$ = this.dashboardService.getStudents().pipe(
-      finalize(() => (this.loader = false)),
-      catchError((err: any) => of([]))
+    this.subscription.add(
+      this.dashboardService.getStudents().subscribe(
+        (res) => {
+          this.loader = false;
+          if (res) {
+            this.students = res;
+          } else {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+            });
+          }
+        },
+        (err) => {
+          this.loader = false;
+          this.messageService.add({
+            severity: 'error',
+            summary: err,
+          });
+        }
+      )
     );
   }
 
@@ -55,7 +86,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.subscription.add(
       ref.onClose.subscribe((res) => {
-        this.getStudents();
+        // this.getStudents();
       })
     );
   }
