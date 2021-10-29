@@ -16,6 +16,12 @@ const routes: Routes = [
       ),
     data: { title: 'Dashboard' },
   },
+  {
+    path: 'weather',
+    loadChildren: () =>
+      import('./modules/weather/weather.module').then((m) => m.WeatherModule),
+    data: { title: 'Weather' },
+  },
 ];
 
 @NgModule({

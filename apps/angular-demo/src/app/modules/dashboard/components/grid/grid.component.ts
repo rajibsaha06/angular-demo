@@ -2,7 +2,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -14,17 +13,13 @@ import { Students } from '../../models/dashboard.interface';
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss'],
 })
-export class GridComponent implements OnInit {
+export class GridComponent {
   @Input() data: Students[] = [];
   @Input() loader: boolean = false;
   rows = 6;
   rowsPerPageOptions = [6, 12, 24, 48];
   @ViewChild('studentTable') studentTable: Table | undefined;
   @Output() viewRow: EventEmitter<Students> = new EventEmitter<Students>();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   /**
    * View Row

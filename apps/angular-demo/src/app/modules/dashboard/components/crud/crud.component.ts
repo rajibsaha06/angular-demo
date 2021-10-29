@@ -73,16 +73,25 @@ export class CrudComponent implements OnInit {
         this.dashboardService.setStudent(this.studentForm.value).subscribe(
           (data) => {
             if (data?.id) {
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Saved Successfully',
-              });
-              this.ref.close();
+              this.getToaster('success', 'Saved Successfully');
+            } else {
+              this.getToaster('error', 'Error');
             }
+            this.ref.close();
           },
-          (err) => {}
+          (err) => {
+            this.getToaster('error', err);
+            this.ref.close();
+          }
         )
       );
     }
+  }
+
+  getToaster(severity: string, msg: string) {
+    this.messageService.add({
+      severity: severity,
+      summary: msg,
+    });
   }
 }
