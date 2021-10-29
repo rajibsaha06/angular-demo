@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": "S-0001",
+      "name": "A",
+      "class": "XII",
+      "age": 16,
+      "address": "Dummy",
+      "country": "England",
+      "city": "London",
+      "phone": "4356546456"
+    },
+    {
+      "id": "S-0002",
+      "name": "B",
+      "class": "XI",
+      "age": 15,
+      "address": "Dummy",
+      "country": "India",
+      "city": "Kolkata",
+      "phone": "345456436"
+    }
+  ]
+}

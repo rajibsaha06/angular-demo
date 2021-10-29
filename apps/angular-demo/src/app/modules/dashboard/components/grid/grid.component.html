@@ -1,0 +1,95 @@
+<div class="loading-container" *ngIf="loader">
+  <img src="./assets/images/loader.gif" alt="loading..." />
+</div>
+<ng-container *ngIf="!loader">
+  <div class="col-lg-6 pr-0 text-right" *ngIf="data?.length">
+    <input
+      type="text"
+      pInputText
+      placeholder="Search"
+      class="form-control support-textbox"
+      (input)="applyFilterGlobal($event)"
+    />
+  </div>
+  <div class="col-lg-12 pt-3 pr-0">
+    <p-table
+      [value]="data"
+      styleClass="p-datatable-gridlines"
+      [paginator]="data?.length ? true : false"
+      [rows]="rows"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [globalFilterFields]="[
+        'id',
+        'name',
+        'class',
+        'city',
+        'country',
+        'phone',
+        'address'
+      ]"
+      #studentTable
+    >
+      <ng-template pTemplate="header">
+        <tr class="supportgrid">
+          <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+          <th pSortableColumn="name">
+            Name <p-sortIcon field="name"></p-sortIcon>
+          </th>
+          <th pSortableColumn="class">
+            Class <p-sortIcon field="class"></p-sortIcon>
+          </th>
+          <th pSortableColumn="age">
+            Age <p-sortIcon field="age"></p-sortIcon>
+          </th>
+          <th pSortableColumn="address">Address</th>
+          <th pSortableColumn="phone">
+            Phone <p-sortIcon field="phone"></p-sortIcon>
+          </th>
+          <th pSortableColumn="city">
+            City <p-sortIcon field="city"></p-sortIcon>
+          </th>
+          <th pSortableColumn="country">
+            Country <p-sortIcon field="country"></p-sortIcon>
+          </th>
+          <th class="action">Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>
+            {{ item?.id }}
+          </td>
+          <td>
+            {{ item?.name }}
+          </td>
+          <td>
+            {{ item?.class }}
+          </td>
+          <td>
+            {{ item?.age }}
+          </td>
+          <td>
+            {{ item?.address }}
+          </td>
+          <td>
+            {{ item?.phone }}
+          </td>
+          <td>
+            {{ item?.city }}
+          </td>
+          <td>
+            {{ item?.country }}
+          </td>
+          <td>Actions</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td [attr.colspan]="9" class="text-center">No data found</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</ng-container>
