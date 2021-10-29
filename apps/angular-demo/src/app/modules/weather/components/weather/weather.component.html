@@ -4,7 +4,7 @@
       Weather
       <ng-container *ngIf="data?.current?.weather_icons.length">
         <ng-container *ngFor="let item of data?.current?.weather_icons">
-          <img [src]="item" alt="" />
+          <img [src]="item" alt="" class="weather" />
         </ng-container>
       </ng-container>
     </h3>
